@@ -17,14 +17,14 @@ router.get('/graphic', (req: Request, res: Response) => {
 router.post('/graphic', (req: Request, res: Response) => {
    const server = Server.instance;
 
-    const { month, units } = req.body;
+    const { question, value } = req.body;
 
     const payload = {
-        month,
-        units
+        question,
+        value
     }
 
-    graphic.incrementMonthValue(month, Number(units));
+    graphic.incrementQuestionsAnswers(Number(question), Number(value));
 
     server.io.emit('change-graphic', graphic.getGraphicData());
 
